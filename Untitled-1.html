@@ -8,11 +8,24 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
     <script> //alert("This is homepage")
-        const array1 = ["aexa", "john"];
+        const array1 = ["aexa", "john", "sdad"];
+
+        array1.pop();//删掉最后一个(sdad)
+        console.log(array1);
+
+        array1.push("dush");//加入一个
+        console.log(array1);
+
+        array1.splice(2, 0, "a", "b");//在第三个位置（0<aexa>，1<john>)加入
+        console.log(array1);
+
+        array1.splice(1, 1);//在第二个位置（0<aexa>，1<john>,2<a>，3<b>,4<sdad>)删掉两个（0<aexa>，1<john>,2<sdad>)
+        console.log(array1);
+
         const arraytable = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
-        
+
         for (i = 0; i < arraytable.length; i++) {
-            for (a = 0; a<arraytable.length; a++) {
+            for (a = 0; a < arraytable.length; a++) {
                 console.log(arraytable[i][a]);
             }
         }

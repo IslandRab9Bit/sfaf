@@ -1,52 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
-    <script> //alert("This is homepage")
-        const array1 = ["aexa", "john", "sdad"];
 
-        array1.pop();//删掉最后一个(sdad)
-        console.log(array1);
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Untitled-1.js"></script>
 
-        array1.push("dush");//加入一个
-        console.log(array1);
-
-        array1.splice(2, 0, "a", "b");//在第三个位置（0<aexa>，1<john>)加入
-        console.log(array1);
-
-        array1.splice(1, 1);//在第二个位置（0<aexa>，1<john>,2<a>，3<b>,4<sdad>)删掉两个（0<aexa>，1<john>,2<sdad>)
-        console.log(array1);
-
-        const arraytable = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
-
-        for (i = 0; i < arraytable.length; i++) {
-            for (a = 0; a < arraytable.length; a++) {
-                console.log(arraytable[i][a]);
-            }
-        }
-        console.log("this is homepage");
-        console.error("error console");
-        console.warn("warning console");
-        const ingredients = [
-            'egg', 'milk', 'cheese', 'garlic', 'onion', 'kale', 'salt', 'paper'];
-
-
-        let listItems = ingredients.map(
-            (singleIngredients) => console.log(`<li>${singleIngredients}</li>`))
-
-        for (let i = 0; i < ingredients.length; i++) {
-            text += ingredients[i] + "<br>";
-        }
-
-    </script>
 </head>
 
 <body>
+
+    <div class="container">
+        <h1>Regeister Form</h1>
+
+        <form action="">
+            <div class="mb-3">
+                <label for="fullname" class="from-label">Fullname</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" minlength="3" maxlength="30"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="from-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" maxlength="8" required>
+            </div>
+            <div class="mb-3">
+                <label for="icno" class="from-label">Ic No.</label>
+                <input type="text" class="form-control" id="icno" name="icno" pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}"
+                    placeholder="001234-12-1234" maxlength="14" required>
+            </div>
+            <div class="mb-3">
+                <label for="days" class="from-label">Days</label>
+                <input type="number" inputmode="numeric" class="from-label" id="days" name="days" required>
+
+
+                <label for="birth" class="from-label">Birth date ,Month</label>
+                <input type="month" id="birth" name="birth" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="from-label">Password</label>
+                <input type="password" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="password2" class="from-label">Confirm password</label>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="from-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="tel" class="from-label">Phone Contact</label>
+                <input type="tel" class="form-control" id="tel" name="tel" required>
+            </div>
+
+
+
+        </form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Reset</button>
+        <span id="display"></span>
+    </div>
 
 </body>
 

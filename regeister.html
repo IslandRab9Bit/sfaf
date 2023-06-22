@@ -9,56 +9,12 @@
   <title>Bootstrap Example</title>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="Untitled-1.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
-   
-   <script>
-      $(document).ready(function () {
 
-          var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); // open database
-          db.transaction(function (tx) {
-              tx.executeSql('CREATE TABLE IF NOT EXISTS ACCOUNTS (id, username)');
-          }
-          );
-          localStorage.setItem("click_number", 1);  // number can be auto add 1
-          $("#form_submit").on("submit", function (event) {
 
-              event.preventDefault(); //stop the form to refresh
 
-              var click_button = localStorage.getItem("click_number"); // store into variable
-              localStorage.setItem("click_number", parseInt(click_button) + 1);  // number can be auto add 1
-
-              var username = document.getElementById('username').value; // get value
-              var fullname = document.getElementById('fullname').value;
-              var icno = document.getElementById('icno').value;
-              var days = document.getElementById('days').value;
-              var birth = document.getElementById('birth').value;
-              var password = document.getElementById('password').value;
-              var password2 = document.getElementById('password2').value;
-              var email = document.getElementById('email').value;
-              var tel = document.getElementById('tel').value;
-              
-              alert(username); //debug value
-              alert(parseInt(click_button) + 1);
-              
-              var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); // open database
-              db.transaction(function (tx2) {
-
-                  tx2.executeSql('INSERT INTO ACCOUNTS VALUES (?, ?)', [parseInt(click_button + 1), fullname, username,icno,days,bitrh,password,password2,email,tel]);
-                  alert('success'); //display success
-
-              });
-
-          });
-
-          // set value store name
-          localStorage.setItem("username", "keying");
-
-          // get value
-          // alert(localStorage.getItem('username'));
-      });
-  </script>
 </head>
 
 <body>
@@ -82,7 +38,8 @@
       </div>
       <div class="mb-3">
         <label for="days" class="from-label">Days</label>
-        <input type="number" inputmode="numeric" class="from-label" id="days" name="days" required>
+        <input type="number" inputmode="numeric" class="from-label" id="days" name="days" max="31" maxlength="2"
+          required>
 
 
         <label for="birth" class="from-label">Birth date ,Month</label>
@@ -108,13 +65,59 @@
       </div>
 
 
-
+      <button type="submit" class="btn btn-primary"  >Submit</button>
+      <button type="reset" class="btn btn-primary">Reset</button>
     </form>
-    <button type="submit" class="btn btn-primary" onclick=submitForm()>Submit</button>
-    <button type="reset" class="btn btn-primary" >Reset</button>
-    <span id="display"></span>
+
+
   </div>
-  
+  <script>
+    $(document).ready(function () {
+
+      var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); // open database
+      
+      db.transaction(function (tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ACCOUNTS (fullname TEXT, username TEXT,icno TEXT, days TEXT,bitrh TEXT,password TEXT,password2 TEXT,email TEXT,tel TEXT)');
+      });
+
+
+      document.getElementById('form_submit').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var username = $("#username").val(); // get value
+        var fullname = $("#fullname").val();
+        var icno = $("#icno").val();
+        var days = $("#days").val();
+        var birth = $("#birth").val();
+        var password = $("#password").val();
+        var password2 = $("#password2").val();
+        var email = $("#email").val();
+        var tel = $("#tel").val();
+
+        if (password !== password2){
+          alert("Password did not match");
+          return;
+        }
+
+        db.transaction(function (tx) {
+
+          tx.executeSql('INSERT INTO ACCOUNTS( fullname, username,icno,days,birth,password,password2,email,tel) VALUES (?,?,?,?,?,?,?,?,?)', 
+          [ fullname, username, icno, days, birth, password, password2, email, tel],);
+          
+        });
+
+
+      }
+      );
+
+
+
+
+
+
+    });
+
+  </script>
 
 </body>
 
